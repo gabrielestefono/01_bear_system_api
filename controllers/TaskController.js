@@ -28,12 +28,28 @@ exports.createTask = async (req, res) => {
 /**
  * Equivalente ao método show do laravel
  */
-exports.getTask = async (req,res) => {}
+exports.getTask = async (req,res) => {
+	try {
+		const id = req.params.id;
+		const task = await Task.findById(id);
+		res.json(task);
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 /**
  * Equivalente ao método update do laravel
  */
-exports.updateTask = async (req, res) => {}
+exports.updateTask = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const task = await Task.findById(id);
+		res.json(task);
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 /**
  * Equivalente ao método delete do laravel
