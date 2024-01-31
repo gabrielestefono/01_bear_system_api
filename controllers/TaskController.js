@@ -45,7 +45,11 @@ exports.updateTask = async (req, res) => {
 	try {
 		const id = req.params.id;
 		const task = await Task.findByIdAndUpdate(id, req.body);
-		res.json(task);
+		if(task){
+			res.json({msg: "Atualizado com sucesso!"});
+		}else{
+			res.json({msg: `O elemento de id ${id} não existe!`})
+		}
 	} catch (error) {
 		console.log(error);
 	}
@@ -54,4 +58,16 @@ exports.updateTask = async (req, res) => {
 /**
  * Equivalente ao método delete do laravel
  */
-exports.deleteTask = async (req, res) => {}
+exports.deleteTask = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const task = await Task.findByIdAndDelete(id);
+		if(task){
+			res.json({msg: "Deletado com sucesso!"});
+		}else{
+			res.json({msg: `O elemento de id ${id} não existe!`})
+		}
+	} catch (error) {
+		console.log(error);
+	}
+}
