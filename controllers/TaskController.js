@@ -3,24 +3,32 @@ const Task = require('../models/tasks');
 /**
  * Equivalente ao método index do laravel
  */
-exports.getTasks = (req, res) => {}
+exports.getTasks = async (req, res) => {}
 
 /**
  * Equivalente ao método store do laravel
  */
-exports.createTask = (req, res) => {}
+exports.createTask = async (req, res) => {
+	try {
+		const task = new Task(req.body);
+		await task.save();
+		res.status(201).send({task, msg: "Tarefa salva com sucesso!"});
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 /**
  * Equivalente ao método show do laravel
  */
-exports.getTask = (req,res) => {}
+exports.getTask = async (req,res) => {}
 
 /**
  * Equivalente ao método update do laravel
  */
-exports.updateTask = (req, res) => {}
+exports.updateTask = async (req, res) => {}
 
 /**
  * Equivalente ao método delete do laravel
  */
-exports.deleteTask = (req, res) => {}
+exports.deleteTask = async (req, res) => {}
