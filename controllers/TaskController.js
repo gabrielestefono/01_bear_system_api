@@ -3,7 +3,14 @@ const Task = require('../models/tasks');
 /**
  * Equivalente ao método index do laravel
  */
-exports.getTasks = async (req, res) => {}
+exports.getTasks = async (req, res) => {
+	try {
+		const tasks = await Task.find();
+		res.json(tasks);
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 /**
  * Equivalente ao método store do laravel
