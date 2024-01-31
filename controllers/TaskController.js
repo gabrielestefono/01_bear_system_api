@@ -44,7 +44,7 @@ exports.getTask = async (req,res) => {
 exports.updateTask = async (req, res) => {
 	try {
 		const id = req.params.id;
-		const task = await Task.findById(id);
+		const task = await Task.findByIdAndUpdate(id, req.body);
 		res.json(task);
 	} catch (error) {
 		console.log(error);
